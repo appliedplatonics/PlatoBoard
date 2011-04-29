@@ -1,0 +1,1 @@
+* analogWrite() doesn't work on PB3 due to lack of PWM hardware

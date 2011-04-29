@@ -40,12 +40,12 @@ PORT = /dev/tty.usb*
 UPLOAD_RATE = 19200
 AVRDUDE_PROGRAMMER = stk500v1
 MCU = attiny2313
-F_CPU = 8000000
+F_CPU = 8000000L
 
 ############################################################################
 # Below here nothing should be changed...
 
-ARDUINO = $(INSTALL_DIR)/hardware/cores/arduino
+ARDUINO = $(INSTALL_DIR)/hardware/cores/PlatoBoard
 AVR_TOOLS_PATH = $(INSTALL_DIR)/hardware/tools/avr/bin
 SRC =  $(ARDUINO)/pins_arduino.c $(ARDUINO)/wiring.c \
 $(ARDUINO)/wiring_analog.c $(ARDUINO)/wiring_digital.c \

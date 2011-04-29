@@ -21,8 +21,10 @@
 
   $Id: wiring.h 249 2007-02-03 16:52:51Z mellis $
 
+  modified 2011-04-28 for attiny2313, Applied Platonics
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
+
 */
 
 /* XXX TODO PLATOBOARD */
@@ -38,7 +40,8 @@
 #define NOT_ON_TIMER 0
 #define TIMER0A 1
 #define TIMER0B 2
-#define TIMER1 3
+#define TIMER1A 3
+#define TIMER1B 4
 
 //changed it to uint16_t to uint8_t
 extern const uint8_t PROGMEM port_to_mode_PGM[];

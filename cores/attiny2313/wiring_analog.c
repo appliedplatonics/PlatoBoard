@@ -33,41 +33,11 @@ uint8_t analog_reference = DEFAULT;
 
 void analogReference(uint8_t mode)
 {
-	// can't actually set the register here because the default setting
-	// will connect AVCC and the AREF pin, which would cause a short if
-	// there's something connected to AREF.
-	analog_reference = mode;
 }
 
 int analogRead(uint8_t pin)
 {
-	uint8_t low, high;
-
-	// set the analog reference (high two bits of ADMUX) and select the
-	// channel (low 4 bits).  this also sets ADLAR (left-adjust result)
-	// to 0 (the default).
-//	ADMUX = (analog_reference << 6) | (pin & 0x3f); // more MUX
-// sapo per tiny45
-	ADMUX = pin & 0x3f;
-
-	// without a delay, we seem to read from the wrong channel
-	//delay(1);
-
-	// start the conversion
-	sbi(ADCSRA, ADSC);
-
-	// ADSC is cleared when the conversion finishes
-	while (bit_is_set(ADCSRA, ADSC));
-
-	// we have to read ADCL first; doing so locks both ADCL
-	// and ADCH until ADCH is read.  reading ADCL second would
-	// cause the results of each conversion to be discarded,
-	// as ADCL and ADCH would be locked when it completed.
-	low = ADCL;
-	high = ADCH;
-
-	// combine the two bytes
-	return (high << 8) | low;
+  return 0;
 }
 
 // Right now, PWM output only works on the pins with
@@ -83,28 +53,25 @@ void analogWrite(uint8_t pin, int val)
   // call for the analog output pins.
   pinMode(pin, OUTPUT);
 
-  //Yep, only 2 PMW, Saposoft
-  	
-if (digitalPinToTimer(pin) == TIMER0A) {
-    if (val == 0) {
-	  digitalWrite(pin, LOW);
-    } else {
-	  // connect pwm to pin on timer 0, channel A
-	  sbi(TCCR0A, COM0A1);
-	  // set pwm duty
-	  OCR0A = val;      
-    }
-  } else if (digitalPinToTimer(pin) == TIMER1) {
-    if (val == 0) {
-	  digitalWrite(pin, LOW);
-    } else {
-	  // connect pwm to pin on timer 0, channel B
-	  sbi(TCCR1, COM1A1);
-	  // set pwm duty
-	  OCR1A = val;
-    }
-  }  else if (val < 128)
-    digitalWrite(pin, LOW);
-  else
-    digitalWrite(pin, HIGH);
+  switch(digitalPinToTimer(pin)) {
+  case TIMER0A: 
+    OCR0A = val;
+    sbi(TCCR0A, COM0A1);
+    break;
+  case TIMER0B:
+    OCR0B = val;
+    sbi(TCCR0A, COM0B1);
+    break;
+
+  case TIMER1A:
+    OCR1A = val;
+    sbi(TCCR1A, COM0A1);
+    break;
+  case TIMER1B:
+    OCR1B = val;
+    sbi(TCCR1A, COM0B1);
+    break;
+  default:
+    digitalWrite(pin, val >= 128);
+  }
 }

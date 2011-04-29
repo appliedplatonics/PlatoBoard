@@ -24,7 +24,6 @@
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
 */
-/* XXX TODO PLATOBOARD */
 
 #include "wiring_private.h"
 #include "pins_arduino.h"
@@ -37,7 +36,6 @@ void pinMode(uint8_t pin, uint8_t mode)
 
 	if (port == NOT_A_PIN) return;
 
-	// JWS: can I let the optimizer do this?
 	reg = portModeRegister(port);
 
 	if (mode == INPUT) *reg &= ~bit;
@@ -51,16 +49,16 @@ void pinMode(uint8_t pin, uint8_t mode)
 // But shouldn't this be moved into pinMode? Seems silly to check and do on
 // each digitalread or write.
 //
-//Only 2 PWM's
+
 static inline void turnOffPWM(uint8_t timer) __attribute__ ((always_inline));
 static inline void turnOffPWM(uint8_t timer)
 {
-	if (timer == TIMER1) cbi(TCCR1A, COM1A1);
-	if (timer == TIMER1) cbi(TCCR1A, COM1B1);
-	if (timer == TIMER0A) cbi(TCCR0A, COM0A1);
-	if (timer == TIMER0B) cbi(TCCR0A, COM0B1);
-	if (timer == TIMER0A) cbi(TCCR0A, COM0A0);
-	if (timer == TIMER0B) cbi(TCCR0A, COM0B0);
+  switch(timer) {
+  case TIMER0A: cbi(TCCR0A, COM0A1); break;
+  case TIMER0B: cbi(TCCR0A, COM0B1); break;
+  case TIMER1A: cbi(TCCR1A, COM0A1); break;
+  case TIMER1B: cbi(TCCR1A, COM0B1); break;
+  }
 }
 
 void digitalWrite(uint8_t pin, uint8_t val)
@@ -94,6 +92,5 @@ int digitalRead(uint8_t pin)
 	// before getting a digital reading.
 	if (timer != NOT_ON_TIMER) turnOffPWM(timer);
 
-	if (*portInputRegister(port) & bit) return HIGH;
-	return LOW;
+	return !!(*portInputRegister(port) & bit);
 }

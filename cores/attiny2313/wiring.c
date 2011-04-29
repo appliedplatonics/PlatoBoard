@@ -24,7 +24,6 @@
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
 */
-/* XXX TODO PLATOBOARD */
 
 #include "wiring_private.h"
 
@@ -78,6 +77,10 @@ unsigned long millis()
 
 	return m;
 }
+
+// TODO JBM Empirical tests of these functions; I suspect they're off
+// for the ATTiny instruction set.
+
 
 unsigned long micros() {
 	unsigned long m, t;
@@ -170,23 +173,24 @@ void delayMicroseconds(unsigned int us)
 	SREG = oldSREG;
 }
 
+
+
 void init()
 {
 	// this needs to be called before setup() or some functions won't
 	// work there
 	sei();
 	
-/* dumpt everything, and only added the 2 timers the attiny has */
-	// on the ATmega168, timer 0 is also used for fast hardware pwm
-	// (using phase-correct PWM would mean that timer 0 overflowed half as often
-	// resulting in different millis() behavior on the ATmega8 and ATmega168)
-	cbi(TCCR0A, WGM02);
+	// Set up the timer for Set on compare, clear at top
+	cbi(TCCR0B, WGM02);
 	sbi(TCCR0A, WGM01);
 	sbi(TCCR0A, WGM00);
+
 	// set timer 0 prescale factor to 64
-//	sbi(TCCR0B, CS02);
+	cbi(TCCR1B, CS02);
 	sbi(TCCR0B, CS01);
 	sbi(TCCR0B, CS00);
+
 	// enable timer 0 overflow interrupt
 	sbi(TIMSK, TOIE0);
 
@@ -194,29 +198,19 @@ void init()
 	// this is better for motors as it ensures an even waveform
 	// note, however, that fast pwm mode can achieve a frequency of up
 	// 8 MHz (with a 16 MHz clock) at 50% duty cycle
-	// set timer 1 prescale factor to 64
-	sbi(TCCR1, CS11);
-	sbi(TCCR1, CS10);
-	sbi(TCCR1, PWM1A);
-	// put timer 1 in 8-bit phase correct pwm mode
-	// sbi(TCCR1, WGM10); non c'è nell attiny 45
 
-	// set a2d prescale factor to 128
-	// 16 MHz / 128 = 125 KHz, inside the desired 50-200 KHz range.
-	// XXX: this will not work properly for other clock speeds, and
-	// this code should use F_CPU to determine the prescale factor.
-/* added F_CPU prescaler */
-#if F_CPU >= 16000000L //128
-	sbi(ADCSRA, ADPS2);
-	sbi(ADCSRA, ADPS1);
-	sbi(ADCSRA, ADPS0);
-#elif F_CPU >= 8000000L //64
-	sbi(ADCSRA, ADPS2);
-	sbi(ADCSRA, ADPS1);
-#else				//8
-	sbi(ADCSRA, ADPS1);
-	sbi(ADCSRA, ADPS0);
-#endif
-	// enable a2d conversions
-	sbi(ADCSRA, ADEN);
+	// set timer 1 prescale factor to 64
+	cbi(TCCR1B, CS12);
+	sbi(TCCR1B, CS11);
+	sbi(TCCR1B, CS10);
+
+	// put timer 1 in 8-bit phase correct pwm mode
+	// WGM13:0 == 1
+	cbi(TCCR1B, WGM13);
+	cbi(TCCR1B, WGM12);
+	cbi(TCCR1A, WGM11);
+	sbi(TCCR1A, WGM10);
+
+	// Disable analog comparator; it's more confusing than helpful.
+	cbi(ACSR, ACD);
 }

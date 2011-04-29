@@ -9,12 +9,12 @@ attiny85usbtinyisp.name=ATtiny85 (w/ USB Tiny ISP)
 attiny85usbtinyisp.upload.using=arduino:usbtinyisp
 attiny85usbtinyisp.upload.maximum_size=8192
 attiny85usbtinyisp.build.mcu=attiny85
-attiny85usbtinyisp.build.f_cpu=800000L
+attiny85usbtinyisp.build.f_cpu=8000000L
 attiny85usbtinyisp.build.core=attiny45_85
 
 attiny2313usbtinyisp.name=ATtiny2313 (w/ USB Tiny ISP)
 attiny2313usbtinyisp.upload.using=arduino:usbtinyisp
-attiny2313usbtinyisp.upload.maximum_size=8192
+attiny2313usbtinyisp.upload.maximum_size=2048
 attiny2313usbtinyisp.build.mcu=attiny2313
-attiny2313usbtinyisp.build.f_cpu=800000L
+attiny2313usbtinyisp.build.f_cpu=8000000L
 attiny2313usbtinyisp.build.core=attiny2313

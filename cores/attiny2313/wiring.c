@@ -21,6 +21,8 @@
 
   $Id: wiring.c 585 2009-05-12 10:55:26Z dmellis $
 
+  Modified 2011-04-29 for ATTiny2313 Applied Platonics
+
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
 */
@@ -30,6 +32,7 @@
 // the prescaler is set so that timer0 ticks every 64 clock cycles, and the
 // the overflow handler is called every 256 ticks.
 #define MICROSECONDS_PER_TIMER0_OVERFLOW (clockCyclesToMicroseconds(64 * 256))
+
 
 // the whole number of milliseconds per timer0 overflow
 #define MILLIS_INC (MICROSECONDS_PER_TIMER0_OVERFLOW / 1000)
@@ -44,9 +47,12 @@ volatile unsigned long timer0_overflow_count = 0;
 volatile unsigned long timer0_millis = 0;
 static unsigned char timer0_fract = 0;
 
-//different name, TIMER0_OVF_vect to this
-SIGNAL(TIM0_OVF_vect)
-{
+ISR(BADISR_vect) { 
+  DDRB = 0xFF;
+  PORTB = 0xFF;
+}
+
+ISR(_VECTOR(6)) {
 	// copy these to local variables so they can be stored in registers
 	// (volatile variables must be read from memory on every access)
 	unsigned long m = timer0_millis;
@@ -177,17 +183,18 @@ void delayMicroseconds(unsigned int us)
 
 void init()
 {
-	// this needs to be called before setup() or some functions won't
-	// work there
-	sei();
-	
+  // We need to enable interrupts before setup(), or some functions
+  // won't work there.
+  sei();
+
+
 	// Set up the timer for Set on compare, clear at top
-	cbi(TCCR0B, WGM02);
+  // cbi(TCCR0B, WGM02);
 	sbi(TCCR0A, WGM01);
 	sbi(TCCR0A, WGM00);
 
 	// set timer 0 prescale factor to 64
-	cbi(TCCR1B, CS02);
+	cbi(TCCR0B, CS02);
 	sbi(TCCR0B, CS01);
 	sbi(TCCR0B, CS00);
 
@@ -212,5 +219,5 @@ void init()
 	sbi(TCCR1A, WGM10);
 
 	// Disable analog comparator; it's more confusing than helpful.
-	cbi(ACSR, ACD);
+	cbi(ACSR, ACD);	
 }

@@ -10,7 +10,7 @@
 #include "wiring.h"
 
 #ifdef __cplusplus
-//#include "HardwareSerial.h" // burp
+#include "TinySerial.h"
 
 uint16_t makeWord(uint16_t w);
 uint16_t makeWord(byte h, byte l);

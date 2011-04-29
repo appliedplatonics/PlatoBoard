@@ -52,7 +52,7 @@ ISR(BADISR_vect) {
   PORTB = 0xFF;
 }
 
-ISR(_VECTOR(6)) {
+ISR(TIMER0_OVF_vect) {
 	// copy these to local variables so they can be stored in registers
 	// (volatile variables must be read from memory on every access)
 	unsigned long m = timer0_millis;

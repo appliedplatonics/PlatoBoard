@@ -23,6 +23,8 @@
 #include <inttypes.h>
 #include <stdio.h> // for size_t
 
+#include <avr/pgmspace.h>
+
 #define DEC 10
 #define HEX 16
 #define OCT 8
@@ -39,6 +41,7 @@ class Print
     virtual void write(const char *str);
     virtual void write(const uint8_t *buffer, size_t size);
     void print(char);
+    void writePgm(const char *);
     void print(const char[]);
     void print(uint8_t);
     void print(int);

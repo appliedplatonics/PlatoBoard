@@ -32,6 +32,7 @@ class TinySerial : public Stream
   virtual void flush(void);
   virtual void write(uint8_t);
   using Print::write; // pull in write(str) and write(buf, size) from Print
+  using Print::writePgm; // pull in write(str) and write(buf, size) from Print
 };
 
 extern TinySerial Serial;

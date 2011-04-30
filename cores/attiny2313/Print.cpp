@@ -35,6 +35,13 @@ void Print::write(const char *str)
     write(*str++);
 }
 
+void Print::writePgm(const char *str)
+{
+  char x;
+  while((x = pgm_read_byte_near(str++)))
+    write(x);
+}
+
 /* default implementation: may be overridden */
 void Print::write(const uint8_t *buffer, size_t size)
 {
@@ -161,14 +168,14 @@ void Print::println(double n)
 void Print::printNumber(unsigned long n, uint8_t base)
 {
   // These are allocated on the stack; to have some hope of fitting
-  // onto a 2313, we have to limit our range to base 10, 16, or
+  // onto a 2313, we have to limit our range to base 8, 10, 16, or
   // higher.
 
   unsigned char buf[3 * sizeof(long) + sizeof(long)/2]; // l(10)/l(2) < 3.5
   unsigned long i = 0;
 
   
-  if (base < 10) {
+  if (base < 8) {
     print("XXX");
     return;
   }

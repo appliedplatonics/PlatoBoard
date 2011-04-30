@@ -8,7 +8,8 @@
 #include <avr/interrupt.h>
 
 #include "wiring.h"
-
+#include "WCharacter.h"
+#include "WString.h"
 #ifdef __cplusplus
 #include "TinySerial.h"
 
@@ -18,6 +19,9 @@ uint16_t makeWord(byte h, byte l);
 #define word(...) makeWord(__VA_ARGS__)
 
 unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
+
+void tone(uint8_t _pin, unsigned int frequency, unsigned long duration = 0);
+void noTone(uint8_t _pin);
 
 // WMath prototypes
 long random(long);

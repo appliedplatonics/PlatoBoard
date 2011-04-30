@@ -160,8 +160,18 @@ void Print::println(double n)
 
 void Print::printNumber(unsigned long n, uint8_t base)
 {
-  unsigned char buf[8 * sizeof(long)]; // Assumes 8-bit chars. 
+  // These are allocated on the stack; to have some hope of fitting
+  // onto a 2313, we have to limit our range to base 10, 16, or
+  // higher.
+
+  unsigned char buf[3 * sizeof(long) + sizeof(long)/2]; // l(10)/l(2) < 3.5
   unsigned long i = 0;
+
+  
+  if (base < 10) {
+    print("XXX");
+    return;
+  }
 
   if (n == 0) {
     print('0');

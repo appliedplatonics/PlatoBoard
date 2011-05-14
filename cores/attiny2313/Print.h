@@ -2,6 +2,11 @@
   Print.h - Base class that provides print() and println()
   Copyright (c) 2008 David A. Mellis.  All right reserved.
 
+  Portions copyright (c) 2011 Applied Platonics.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
   License as published by the Free Software Foundation; either
@@ -15,6 +20,8 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+  2011-05-11 jbm Added Print::writePgm() to write strings from flash
 */
 
 #ifndef Print_h

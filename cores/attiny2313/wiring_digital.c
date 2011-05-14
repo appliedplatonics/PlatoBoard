@@ -1,8 +1,13 @@
 /*
   wiring_digital.c - digital input and output functions
-  Part of Arduino - http://www.arduino.cc/
 
   Copyright (c) 2005-2006 David A. Mellis
+
+  Portions copyright (c) 2011 Applied Platonics.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -19,14 +24,16 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
 
-  $Id: wiring.c 248 2007-02-03 15:36:30Z mellis $
+  Id: wiring.c 248 2007-02-03 15:36:30Z mellis
 
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
+
+  2011-04-29 jbm Ported to ATtiny2313 by Applied Platonics
 */
 
 #include "wiring_private.h"
-#include "pins_arduino.h"
+#include "pins_platoboard2313.h"
 
 void pinMode(uint8_t pin, uint8_t mode)
 {

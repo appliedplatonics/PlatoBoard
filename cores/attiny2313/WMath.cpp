@@ -1,9 +1,13 @@
-/* -*- mode: jde; c-basic-offset: 2; indent-tabs-mode: nil -*- */
-
 /*
   Part of the Wiring project - http://wiring.org.co
   Copyright (c) 2004-06 Hernando Barragan
   Modified 13 August 2006, David A. Mellis for Arduino - http://www.arduino.cc/
+
+  Portions copyright (c) 2011 Applied Platonics.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
   
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -20,7 +24,7 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
   
-  $Id$
+  2011-05-11 jbm Ported to ATTiny2313 by Applied Platonics.
 */
 
 extern "C" {

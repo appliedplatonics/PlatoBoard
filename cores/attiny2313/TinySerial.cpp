@@ -1,6 +1,14 @@
 /*
-  TinySerial.cpp - Hardware serial library for Wiring on the ATTiny2313
+  TinySerial.cpp - Hardware serial library for Wiring on the
+                   ATTiny2313
+
   Copyright (c) 2011 Applied Platonics.
+
+  Ringbuffer taken from Wiring's existing HardwareSerial
+  implementation.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
 
   Distributed under the terms of the GPL.
 

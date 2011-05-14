@@ -1,11 +1,15 @@
 /*
-  pins_arduino.c - pin definitions for the Arduino platform on the
-  PlatoBoard
+  pins_platoboard2313.c - pin definitions for Wiring on the PlatoBoard
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
 
   Based on a file from Arduino
 
   Copyright (c) 2005 David A. Mellis
-  Portions copyright (c) 2011 Applied Platonics
+
+  Portions copyright (c) 2011 Applied Platonics, insofar as tables of
+  constants are copyrightable.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -22,7 +26,7 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
 
-  $Id: pins_arduino.c 565 2009-03-25 10:50:00Z dmellis $
+  Id: pins_arduino.c 565 2009-03-25 10:50:00Z dmellis
 
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 09-10-2009 for attiny45 A.Saporetti
@@ -32,7 +36,7 @@
 
 #include <avr/io.h>
 #include "wiring_private.h"
-#include "pins_arduino.h"
+#include "pins_platoboard2313.h"
 
 // On the Arduino board, digital pins are also used
 // for the analog output (software PWM).  Analog input

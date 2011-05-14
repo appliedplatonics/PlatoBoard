@@ -1,8 +1,14 @@
 /*
-  wiring.c - Partial implementation of the Wiring API for the ATmega8.
-  Part of Arduino - http://www.arduino.cc/
+  wiring.c - Partial implementation of the Wiring API for the
+             ATtiny2313
 
   Copyright (c) 2005-2006 David A. Mellis
+
+  Portions copyright (c) 2011 Applied Platonics.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -19,12 +25,13 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
 
-  $Id: wiring.c 585 2009-05-12 10:55:26Z dmellis $
-
-  Modified 2011-04-29 for ATTiny2313 Applied Platonics
+  Id: wiring.c 585 2009-05-12 10:55:26Z dmellis
 
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
+
+  2011-04-29 jbm Ported to ATTiny2313 by Applied Platonics.
+
 */
 
 #include "wiring_private.h"
@@ -47,10 +54,14 @@ volatile unsigned long timer0_overflow_count = 0;
 volatile unsigned long timer0_millis = 0;
 static unsigned char timer0_fract = 0;
 
+#if BLINK_ON_UNHANDLED_ISR
+// This is a kinda handy debug trick.
 ISR(BADISR_vect) { 
   DDRB = 0xFF;
   PORTB = 0xFF;
 }
+
+#endif
 
 ISR(TIMER0_OVF_vect) {
 	// copy these to local variables so they can be stored in registers

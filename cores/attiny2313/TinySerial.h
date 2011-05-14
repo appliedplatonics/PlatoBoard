@@ -2,6 +2,9 @@
   TinySerial.cpp - Hardware serial library for Wiring on the ATTiny2313
   Copyright (c) 2011 Applied Platonics.
 
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
   Distributed under the terms of the GPL.
 
   2011-04-29 jbm First revision

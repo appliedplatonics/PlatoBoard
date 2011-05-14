@@ -2,7 +2,12 @@
   Part of the Wiring project - http://wiring.uniandes.edu.co
 
   Copyright (c) 2004-05 Hernando Barragan
-  Portions copyright (c) 2011 Applied Platonics
+
+  Portions copyright (c) 2011 Applied Platonics.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -25,7 +30,7 @@
   Modified 09-10-2009 for attiny45 A.Saporetti
 
 
-  Modified 2011-05-10 for ATtiny2313 by Applied Platonics
+  2011-05-11 jbm Cleanups for ATtiny2313 port by Applied Platonics.
 */
 
 #include <inttypes.h>

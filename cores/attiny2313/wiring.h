@@ -1,8 +1,14 @@
 /*
-  wiring.h - Partial implementation of the Wiring API for the ATmega8.
-  Part of Arduino - http://www.arduino.cc/
+  wiring.h - Partial implementation of the Wiring API for the
+             ATtiny2313
 
   Copyright (c) 2005-2006 David A. Mellis
+
+  Portions copyright (c) 2011 Applied Platonics.
+
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
+
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -19,12 +25,13 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
 
-  $Id: wiring.h 602 2009-06-01 08:32:11Z dmellis $
+  Id: wiring.h 602 2009-06-01 08:32:11Z dmellis
 
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 14-108-2009 for attiny45 Saposoft
+
+  2011-05-11 jbm  Ported to ATtiny2313 by Applied Platonics
 */
-/* XXX TODO PLATOBOARD */
 
 #ifndef Wiring_h
 #define Wiring_h

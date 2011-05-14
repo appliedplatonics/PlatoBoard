@@ -1,3 +1,4 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   wiring_shift.c - shiftOut() function
 
@@ -33,15 +34,15 @@
 
 void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, byte val)
 {
-	int i;
+  int i;
 
-	for (i = 0; i < 8; i++)  {
-		if (bitOrder == LSBFIRST)
-			digitalWrite(dataPin, !!(val & (1 << i)));
-		else	
-			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
+  for (i = 0; i < 8; i++)  {
+    if (bitOrder == LSBFIRST)
+      digitalWrite(dataPin, !!(val & (1 << i)));
+    else	
+      digitalWrite(dataPin, !!(val & (1 << (7 - i))));
 			
-		digitalWrite(clockPin, HIGH);
-		digitalWrite(clockPin, LOW);		
-	}
+    digitalWrite(clockPin, HIGH);
+    digitalWrite(clockPin, LOW);		
+  }
 }

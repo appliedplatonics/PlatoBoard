@@ -1,30 +1,31 @@
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */                                          
 /*
- Print.cpp - Base class that provides print() and println()
- Copyright (c) 2008 David A. Mellis.  All right reserved.
+  Print.cpp - Base class that provides print() and println()
+  Copyright (c) 2008 David A. Mellis.  All right reserved.
 
- Portions copyright (c) 2011 Applied Platonics.
+  Portions copyright (c) 2011 Applied Platonics.
 
- This file is a part of the PlatoBoard, 
- http://www.appliedplatonics.com/platoboard/
+  This file is a part of the PlatoBoard, 
+  http://www.appliedplatonics.com/platoboard/
 
- This library is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
  
- This library is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
  
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  
- Modified 23 November 2006 by David A. Mellis
+  Modified 23 November 2006 by David A. Mellis
 
- 2011-05-11 jbm Added Print::writePgm() to write strings from flash.
- */
+  2011-05-11 jbm Added Print::writePgm() to write strings from flash.
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -199,22 +200,22 @@ void Print::printNumber(unsigned long n, uint8_t base)
 
   for (; i > 0; i--)
     print((char) (buf[i - 1] < 10 ?
-      '0' + buf[i - 1] :
-      'A' + buf[i - 1] - 10));
+		  '0' + buf[i - 1] :
+		  'A' + buf[i - 1] - 10));
 }
 
 void Print::printFloat(double number, uint8_t digits) 
 { 
   // Handle negative numbers
-  if (number < 0.0)
-  {
-     print('-');
-     number = -number;
+  if (number < 0.0) {
+    print('-');
+    number = -number;
   }
 
   // Round correctly so that print(1.999, 2) prints as "2.00"
   double rounding = 0.5;
-  for (uint8_t i=0; i<digits; ++i)
+
+  for (uint8_t i = 0; i < digits; ++i)
     rounding /= 10.0;
   
   number += rounding;
@@ -229,9 +230,9 @@ void Print::printFloat(double number, uint8_t digits)
     print("."); 
 
   // Extract digits from the remainder one at a time
-  while (digits-- > 0)
-  {
+  while (digits-- > 0) {
     remainder *= 10.0;
+
     int toPrint = int(remainder);
     print(toPrint);
     remainder -= toPrint; 

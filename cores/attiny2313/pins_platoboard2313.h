@@ -1,4 +1,6 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
+   
   pins_platoboard2313.h - pin definitions for Wiring on the PlatoBoard
 
   This file is a part of the PlatoBoard, 

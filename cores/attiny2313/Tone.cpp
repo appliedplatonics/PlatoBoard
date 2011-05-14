@@ -1,16 +1,16 @@
-/*
-  Tone.cpp - Implements the Tone.cpp interface
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */                                          /*
+   Tone.cpp - Implements the Tone.cpp interface
 
-  Original interface by Brett Hagman; this is a total rewrite to make
-  it fit on the ATTiny2313.
+   Original interface by Brett Hagman; this is a total rewrite to make
+   it fit on the ATTiny2313.
 
-  Copyright (c) 2011 Applied Platonics.
+   Copyright (c) 2011 Applied Platonics.
 
-  This file is a part of the PlatoBoard, 
-  http://www.appliedplatonics.com/platoboard/
+   This file is a part of the PlatoBoard, 
+   http://www.appliedplatonics.com/platoboard/
 
-  Distributed under the terms of the GPL.
-*/
+   Distributed under the terms of the GPL.
+                                                                                                           */
 
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>

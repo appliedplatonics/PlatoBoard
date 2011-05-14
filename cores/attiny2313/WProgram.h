@@ -1,3 +1,4 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 #ifndef WProgram_h
 #define WProgram_h
 

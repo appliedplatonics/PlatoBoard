@@ -1,3 +1,4 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   pins_platoboard2313.c - pin definitions for Wiring on the PlatoBoard
 
@@ -72,21 +73,21 @@
 // appropriate addresses for various functions (e.g. reading
 // and writing)
 const uint8_t PROGMEM port_to_mode_PGM[] = {
-	NOT_A_PORT,
-	&DDRB,
-	&DDRD,
+  NOT_A_PORT,
+  &DDRB,
+  &DDRD,
 };
 
 const uint8_t PROGMEM port_to_output_PGM[] = {
-	NOT_A_PORT,
-	&PORTB,
-	&PORTD,
+  NOT_A_PORT,
+  &PORTB,
+  &PORTD,
 };
 
 const uint8_t PROGMEM port_to_input_PGM[] = {
-	NOT_A_PIN,
-	&PINB,
-	&PIND
+  NOT_A_PIN,
+  &PINB,
+  &PIND
 };
 
 const uint8_t PROGMEM digital_pin_to_port_PGM[] = {

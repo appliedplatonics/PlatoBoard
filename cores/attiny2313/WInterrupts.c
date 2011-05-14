@@ -1,3 +1,4 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   Part of the Wiring project - http://wiring.uniandes.edu.co
 

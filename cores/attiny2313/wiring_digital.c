@@ -1,3 +1,4 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   wiring_digital.c - digital input and output functions
 
@@ -37,16 +38,16 @@
 
 void pinMode(uint8_t pin, uint8_t mode)
 {
-	uint8_t bit = digitalPinToBitMask(pin);
-	uint8_t port = digitalPinToPort(pin);
-	volatile uint8_t *reg;
+  uint8_t bit = digitalPinToBitMask(pin);
+  uint8_t port = digitalPinToPort(pin);
+  volatile uint8_t *reg;
 
-	if (port == NOT_A_PIN) return;
+  if (port == NOT_A_PIN) return;
 
-	reg = portModeRegister(port);
+  reg = portModeRegister(port);
 
-	if (mode == INPUT) *reg &= ~bit;
-	else *reg |= bit;
+  if (mode == INPUT) *reg &= ~bit;
+  else *reg |= bit;
 }
 
 // Forcing this inline keeps the callers from having to push their own stuff
@@ -70,34 +71,34 @@ static inline void turnOffPWM(uint8_t timer)
 
 void digitalWrite(uint8_t pin, uint8_t val)
 {
-	uint8_t timer = digitalPinToTimer(pin);
-	uint8_t bit = digitalPinToBitMask(pin);
-	uint8_t port = digitalPinToPort(pin);
-	volatile uint8_t *out;
+  uint8_t timer = digitalPinToTimer(pin);
+  uint8_t bit = digitalPinToBitMask(pin);
+  uint8_t port = digitalPinToPort(pin);
+  volatile uint8_t *out;
 
-	if (port == NOT_A_PIN) return;
+  if (port == NOT_A_PIN) return;
 
-	// If the pin that support PWM output, we need to turn it off
-	// before doing a digital write.
-	if (timer != NOT_ON_TIMER) turnOffPWM(timer);
+  // If the pin that support PWM output, we need to turn it off
+  // before doing a digital write.
+  if (timer != NOT_ON_TIMER) turnOffPWM(timer);
 
-	out = portOutputRegister(port);
+  out = portOutputRegister(port);
 
-	if (val == LOW) *out &= ~bit;
-	else *out |= bit;
+  if (val == LOW) *out &= ~bit;
+  else *out |= bit;
 }
 
 int digitalRead(uint8_t pin)
 {
-	uint8_t timer = digitalPinToTimer(pin);
-	uint8_t bit = digitalPinToBitMask(pin);
-	uint8_t port = digitalPinToPort(pin);
+  uint8_t timer = digitalPinToTimer(pin);
+  uint8_t bit = digitalPinToBitMask(pin);
+  uint8_t port = digitalPinToPort(pin);
 
-	if (port == NOT_A_PIN) return LOW;
+  if (port == NOT_A_PIN) return LOW;
 
-	// If the pin that support PWM output, we need to turn it off
-	// before getting a digital reading.
-	if (timer != NOT_ON_TIMER) turnOffPWM(timer);
+  // If the pin that support PWM output, we need to turn it off
+  // before getting a digital reading.
+  if (timer != NOT_ON_TIMER) turnOffPWM(timer);
 
-	return !!(*portInputRegister(port) & bit);
+  return !!(*portInputRegister(port) & bit);
 }

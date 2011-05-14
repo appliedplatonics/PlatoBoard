@@ -1,6 +1,7 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   wiring.h - Partial implementation of the Wiring API for the
-             ATtiny2313
+  ATtiny2313
 
   Copyright (c) 2005-2006 David A. Mellis
 
@@ -68,18 +69,18 @@ extern "C"{
 #define LSBFIRST 0
 #define MSBFIRST 1
 
-// interrupts
-	// #define LOW  0x0
+  // interrupts
+  // #define LOW  0x0
 #define CHANGE 1
 #define FALLING 2
 #define RISING 3
-// end interrupts
+  // end interrupts
 	
 #define INTERNAL 3
 #define DEFAULT 1
 #define EXTERNAL 0
 
-// undefine stdlib's abs if encountered
+  // undefine stdlib's abs if encountered
 #ifdef abs
 #undef abs
 #endif
@@ -108,42 +109,42 @@ extern "C"{
 #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
 #define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
 
-typedef unsigned int word;
+  typedef unsigned int word;
 
 #define bit(b) (1UL << (b))
 
-typedef uint8_t boolean;
-typedef uint8_t byte;
+  typedef uint8_t boolean;
+  typedef uint8_t byte;
 
-void init(void);
+  void init(void);
 
-void pinMode(uint8_t, uint8_t);
-void digitalWrite(uint8_t, uint8_t);
-int digitalRead(uint8_t);
-int analogRead(uint8_t);
-void analogReference(uint8_t mode);
-void analogWrite(uint8_t, int);
+  void pinMode(uint8_t, uint8_t);
+  void digitalWrite(uint8_t, uint8_t);
+  int digitalRead(uint8_t);
+  int analogRead(uint8_t);
+  void analogReference(uint8_t mode);
+  void analogWrite(uint8_t, int);
 
-//No Serial to begin with
-//void beginSerial(long);
-//void serialWrite(unsigned char);
-//int serialAvailable(void);
-//int serialRead(void);
-//void serialFlush(void);
+  //No Serial to begin with
+  //void beginSerial(long);
+  //void serialWrite(unsigned char);
+  //int serialAvailable(void);
+  //int serialRead(void);
+  //void serialFlush(void);
 
-unsigned long millis(void);
-unsigned long micros(void);
-void delay(unsigned long);
-void delayMicroseconds(unsigned int us);
-unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
+  unsigned long millis(void);
+  unsigned long micros(void);
+  void delay(unsigned long);
+  void delayMicroseconds(unsigned int us);
+  unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
 
-void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, byte val);
+  void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, byte val);
 
-void attachInterrupt(uint8_t, void (*)(void), int mode);
-void detachInterrupt(uint8_t);
+  void attachInterrupt(uint8_t, void (*)(void), int mode);
+  void detachInterrupt(uint8_t);
 
-void setup(void);
-void loop(void);
+  void setup(void);
+  void loop(void);
 
 #ifdef __cplusplus
 } // extern "C"

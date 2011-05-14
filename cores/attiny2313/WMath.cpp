@@ -1,56 +1,55 @@
-/*
-  Part of the Wiring project - http://wiring.org.co
-  Copyright (c) 2004-06 Hernando Barragan
-  Modified 13 August 2006, David A. Mellis for Arduino - http://www.arduino.cc/
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */                                          /*
+   Part of the Wiring project - http://wiring.org.co
+   Copyright (c) 2004-06 Hernando Barragan
+   Modified 13 August 2006, David A. Mellis for Arduino - http://www.arduino.cc/
 
-  Portions copyright (c) 2011 Applied Platonics.
+   Portions copyright (c) 2011 Applied Platonics.
 
-  This file is a part of the PlatoBoard, 
-  http://www.appliedplatonics.com/platoboard/
+   This file is a part of the PlatoBoard, 
+   http://www.appliedplatonics.com/platoboard/
 
   
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the GNU Lesser General Public
-  License as published by the Free Software Foundation; either
-  version 2.1 of the License, or (at your option) any later version.
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
 
-  This library is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-  Lesser General Public License for more details.
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
 
-  You should have received a copy of the GNU Lesser General
-  Public License along with this library; if not, write to the
-  Free Software Foundation, Inc., 59 Temple Place, Suite 330,
-  Boston, MA  02111-1307  USA
+   You should have received a copy of the GNU Lesser General
+   Public License along with this library; if not, write to the
+   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+   Boston, MA  02111-1307  USA
   
-  2011-05-11 jbm Ported to ATTiny2313 by Applied Platonics.
-*/
+   2011-05-11 jbm Ported to ATTiny2313 by Applied Platonics.
+													   */
 
 extern "C" {
-  #include "stdlib.h"
+#include "stdlib.h"
 }
 
 void randomSeed(unsigned int seed)
 {
-  if (seed != 0) {
+  if (seed != 0)
     srandom(seed);
-  }
 }
 
 long random(long howbig)
 {
-  if (howbig == 0) {
+  if (howbig == 0)
     return 0;
-  }
+
   return random() % howbig;
 }
 
 long random(long howsmall, long howbig)
 {
-  if (howsmall >= howbig) {
+  if (howsmall >= howbig)
     return howsmall;
-  }
+
   long diff = howbig - howsmall;
   return random(diff) + howsmall;
 }

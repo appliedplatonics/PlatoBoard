@@ -1,6 +1,7 @@
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   TinySerial.cpp - Hardware serial library for Wiring on the
-                   ATTiny2313
+  ATTiny2313
 
   Copyright (c) 2011 Applied Platonics.
 
@@ -111,13 +112,11 @@ int TinySerial::peek(void)
 int TinySerial::read(void)
 {
   // if the head isn't ahead of the tail, we don't have any characters
-  if (rx_buffer->head == rx_buffer->tail) {
-    return -1;
-  } else {
-    unsigned char c = rx_buffer->buffer[rx_buffer->tail];
-    rx_buffer->tail = (unsigned int)(rx_buffer->tail + 1) % RX_BUFFER_SIZE;
-    return c;
-  }
+  if (rx_buffer->head == rx_buffer->tail)  return -1;
+
+  unsigned char c = rx_buffer->buffer[rx_buffer->tail];
+  rx_buffer->tail = (unsigned int)(rx_buffer->tail + 1) % RX_BUFFER_SIZE;
+  return c;
 }
 
 void TinySerial::flush()

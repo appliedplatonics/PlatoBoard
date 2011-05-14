@@ -1,3 +1,4 @@
+/* -*- mode: C; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   wiring_private.h - Internal header file.
 
@@ -53,12 +54,12 @@ extern "C"{
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 #endif
 
-//Who needs more interrupts?
+  //Who needs more interrupts?
 #define EXTERNAL_INT_0 0
 
 #define EXTERNAL_NUM_INTERRUPTS 1
 
-typedef void (*voidFuncPtr)(void);
+  typedef void (*voidFuncPtr)(void);
 
 #ifdef __cplusplus
 } // extern "C"

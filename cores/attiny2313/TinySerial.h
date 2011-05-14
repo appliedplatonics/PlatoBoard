@@ -1,14 +1,14 @@
-/*
-  TinySerial.cpp - Hardware serial library for Wiring on the ATTiny2313
-  Copyright (c) 2011 Applied Platonics.
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */                                          /*
+   TinySerial.cpp - Hardware serial library for Wiring on the ATTiny2313
+   Copyright (c) 2011 Applied Platonics.
 
-  This file is a part of the PlatoBoard, 
-  http://www.appliedplatonics.com/platoboard/
+   This file is a part of the PlatoBoard, 
+   http://www.appliedplatonics.com/platoboard/
 
-  Distributed under the terms of the GPL.
+   Distributed under the terms of the GPL.
 
-  2011-04-29 jbm First revision
-*/
+   2011-04-29 jbm First revision
+                                                                                                           */
 
 #ifndef TinySerial_h
 #define TinySerial_h
@@ -19,12 +19,12 @@
 #include <avr/io.h>
 
 #ifndef _AVR_IOTN2313_H_
-#error "Not compiling for the ATTiny2313?"
+#error "TinySerial.h: Not compiling for the ATTiny2313, or screwed-up includes."
 #endif
 
 class TinySerial : public Stream
 {
- public:
+public:
   TinySerial();
   void beginFromTable(uint16_t);
   void begin(long);

@@ -1,3 +1,4 @@
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */
 /*
   Print.h - Base class that provides print() and println()
   Copyright (c) 2008 David A. Mellis.  All right reserved.
@@ -40,33 +41,33 @@
 
 class Print
 {
-  private:
-    void printNumber(unsigned long, uint8_t);
-    void printFloat(double, uint8_t);
-  public:
-    virtual void write(uint8_t) = 0;
-    virtual void write(const char *str);
-    virtual void write(const uint8_t *buffer, size_t size);
-    void print(char);
-    void writePgm(const char *);
-    void print(const char[]);
-    void print(uint8_t);
-    void print(int);
-    void print(unsigned int);
-    void print(long);
-    void print(unsigned long);
-    void print(long, int);
-    void print(double);
-    void println(void);
-    void println(char);
-    void println(const char[]);
-    void println(uint8_t);
-    void println(int);
-    void println(unsigned int);
-    void println(long);
-    void println(unsigned long);
-    void println(long, int);
-    void println(double);
+ private:
+  void printNumber(unsigned long, uint8_t);
+  void printFloat(double, uint8_t);
+ public:
+  virtual void write(uint8_t) = 0;
+  virtual void write(const char *str);
+  virtual void write(const uint8_t *buffer, size_t size);
+  void print(char);
+  void writePgm(const char *);
+  void print(const char[]);
+  void print(uint8_t);
+  void print(int);
+  void print(unsigned int);
+  void print(long);
+  void print(unsigned long);
+  void print(long, int);
+  void print(double);
+  void println(void);
+  void println(char);
+  void println(const char[]);
+  void println(uint8_t);
+  void println(int);
+  void println(unsigned int);
+  void println(long);
+  void println(unsigned long);
+  void println(long, int);
+  void println(double);
 };
 
 #endif

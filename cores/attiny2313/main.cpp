@@ -1,14 +1,16 @@
+/* -*- mode: C++; c-basic-offset: 2; indent-tabs-mode: nil -*- */                                          
+
 #include <WProgram.h>
 
 int main(void)
 {
-	init();
+  init();
 
-	setup();
+  setup();
     
-	for (;;)
-		loop();
+  for (;;)
+    loop();
         
-	return 0;
+  return 0;
 }
 

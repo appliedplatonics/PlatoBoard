@@ -1,8 +1,11 @@
 /*
-  pins_arduino.c - pin definitions for the Arduino board
-  Part of Arduino / Wiring Lite
+  pins_arduino.c - pin definitions for the Arduino platform on the
+  PlatoBoard
+
+  Based on a file from Arduino
 
   Copyright (c) 2005 David A. Mellis
+  Portions copyright (c) 2011 Applied Platonics
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -23,14 +26,13 @@
 
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 09-10-2009 for attiny45 A.Saporetti
+
+  Mostly rewritten 2011-05-11 for ATtiny2313, Applied Platonics
 */
 
 #include <avr/io.h>
 #include "wiring_private.h"
 #include "pins_arduino.h"
-
-/* XXX TODO PLATOBOARD */
-
 
 // On the Arduino board, digital pins are also used
 // for the analog output (software PWM).  Analog input
@@ -58,7 +60,7 @@
 // (PWM+ indicates the additional PWM pins on the ATmega168.)
 
 
-#define PA 0 // Unused, but is the port underlying the XTAL
+#define PA 0 // Unused, but is the port underlying the XTAL pins
 #define PB 1
 #define PD 2
 
@@ -92,8 +94,6 @@ const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
   // 8 PBs
   PB, PB, PB, PB,
   PB, PB, PB, PB,
-
-  // zero Js.
 };
 
 const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {

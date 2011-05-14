@@ -1,9 +1,8 @@
-/* -*- mode: jde; c-basic-offset: 2; indent-tabs-mode: nil -*- */
-
 /*
   Part of the Wiring project - http://wiring.uniandes.edu.co
 
   Copyright (c) 2004-05 Hernando Barragan
+  Portions copyright (c) 2011 Applied Platonics
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -24,9 +23,10 @@
 
   Modified 28-08-2009 for attiny84 R.Wiersma
   Modified 09-10-2009 for attiny45 A.Saporetti
-*/
 
-/* XXX TODO PLATOBOARD */
+
+  Modified 2011-05-10 for ATtiny2313 by Applied Platonics
+*/
 
 #include <inttypes.h>
 #include <avr/io.h>
@@ -38,7 +38,6 @@
 #include "wiring_private.h"
 
 volatile static voidFuncPtr intFunc[EXTERNAL_NUM_INTERRUPTS];
-// volatile static voidFuncPtr twiIntFunc;
 
 #define EICRA MCUCR
 #define EIMSK GIMSK
